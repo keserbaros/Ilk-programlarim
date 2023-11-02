@@ -76,9 +76,9 @@ def Dost(a,b):
     else: 
         return "dost sayı değiller",bolenler_1,bolenler_2
 
-def Saat(a):
+def Saat(sure):
     'Saniye olarak giren sayıyı "a saat b dakika c saniye" olarak döndürür'
-    saat = a // 3600
-    dakika = (a % 3600)//60
-    saniye = int(a % 60)
+    saat = int(sure // 3600)
+    dakika = int((sure % 3600)//60)
+    saniye = int(sure % 60)
     return f"{saat} saat {dakika} dakika {saniye} saniye"
