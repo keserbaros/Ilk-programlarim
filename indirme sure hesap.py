@@ -1,8 +1,12 @@
 # bazı oyun servis sağlayıcıları indirme süresini göstermediği için bu programı kullandığım zamanlar oluyor.
 
-
-from hesaplamalar import Saat
-
+try:
+    from hesaplamalar import Saat
+except ImportError:
+    print("Programın çalışması için gerekli dosya eksik!")
+    print("Programı bulunduğu klasörün içerisindeyken çalıştırın!")
+    input()
+    raise ImportError
 
 class Inecek_Boyut(Exception):
     mesaj = "Toplam boyut, inen boyuttan büyük olmalı"
