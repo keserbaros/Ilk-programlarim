@@ -1,5 +1,10 @@
 # bazı oyun servis sağlayıcıları indirme süresini göstermediği için bu programı kullandığım zamanlar oluyor.
 
+# belki kullanıcı toplama ve çarpma toplam boyuta !!
+# küsürü "," ile girebilir
+# telefondan uzaktan kontrol etme
+
+
 try:
     from hesaplamalar import Saat
 except ImportError:

@@ -1,5 +1,6 @@
 # not hesabının yanında harf karşılığı olsun. altında finalden hangi aralıklarda alırsa hangi not karşılığı olacağı yazsın
 # iki ayrı fonksiyon olsun biri not hesabı diğeri dönem sonu ort bulma
+# mobil uygulamada üniversite seçme ekranı, bölüm seçme ekranı, dönem seçme ekranı olacak. dersler otomatik gelicek. %'lik en çok kullanı...
 
 def harf_notu(notu):    
     # Bu programa ihtiyac duyabilecek kişilerin genellikle sınavı geçip geçmediğini öğrenmek isteyen kişiler olabileceğini düşündüğüm için sıralamayı 50'ye uzaklığa göre düzenledim düzenledim
