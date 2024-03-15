@@ -25,20 +25,24 @@ while (1):
     print("Örn:120.5 GB 500 mb 1 GB")
     print("!Sadece indirme hızın biriminde büyük küçük harf duyarlı! (Örn: MB, Mb)")
     print("Yukarı ok yönü tuşuyla bir önceki değerlerinizi görebilirsiniz")
+
     veri = str(input())
-    ilk_boyut = veri.lower().split()
+    veri_boyut = veri.lower().split()
     hiz = veri.split()
+
     try:
-        if ilk_boyut[1] == "gb" and ilk_boyut[3] == "gb":
-            son_boyut = (float(ilk_boyut[0]) - float(ilk_boyut[2]))*1024
-        elif ilk_boyut[1] == "gb" and ilk_boyut[3] == "mb":
-            son_boyut = float(ilk_boyut[0])*1024 - float(ilk_boyut[2])
-        elif ilk_boyut[1] == "mb" and ilk_boyut[3] == "mb":
-            son_boyut = float(ilk_boyut[0]) - float(ilk_boyut[2])
-        elif ilk_boyut[1] == "mb" and ilk_boyut[3] == "gb":
-            son_boyut = float(ilk_boyut[0]) - float(ilk_boyut[2])*1024
+        if veri_boyut[1] == "gb" and veri_boyut[3] == "gb":
+            son_boyut = (float(veri_boyut[0]) - float(veri_boyut[2]))*1024
+        elif veri_boyut[1] == "gb" and veri_boyut[3] == "mb":
+            son_boyut = float(veri_boyut[0])*1024 - float(veri_boyut[2])
+        elif veri_boyut[1] == "mb" and veri_boyut[3] == "mb":
+            son_boyut = float(veri_boyut[0]) - float(veri_boyut[2])
+        elif veri_boyut[1] == "mb" and veri_boyut[3] == "gb":
+            son_boyut = float(veri_boyut[0]) - float(veri_boyut[2])*1024
         else:
             print("Program veri boyutunu GB veya MB şeklinde desteklemekte")
+            
+            
         if son_boyut < 0:
             raise Inecek_Boyut
         if hiz[5] == "MB":
