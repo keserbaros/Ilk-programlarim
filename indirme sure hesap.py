@@ -1,20 +1,31 @@
-# bazı oyun servis sağlayıcıları indirme süresini göstermediği için bu programı kullandığım zamanlar oluyor.
-
-# telefondan uzaktan kontrol etme
-
 """
-Eklenecekler:
+# İndirme süresini hesaplama
+Bu program, bazı oyun servis sağlayıcıları indirme süresini göstermediği için indirme süresini manuel şekilde hesaplamızı sağlıyor.
 
-Kişi verinin hızını değiştirirken verinin boyutunu görecek.
+# Kurulum
+indirme sure hesap.py dosyasını indirin ve dosyayı python'la çalıştırın
+
+# Kullanım
+Sırasıyla "toplam boyutu, ,inen boyutu, indirme hızını" birimleriyle birlikte girin.
+Örn:120.5 GB 500 mb 1 GB
+Sadece indirme hızın biriminde büyük küçük harf duyarlı! (Örn: MB, Mb)
+Yukarı ok yönü tuşuyla bir önceki değerlerinizi görebilirsiniz.
+
+Uygulama sadece tek seferlik süreyi gösteriyor. Zamanlayıcı başlatmıyor. Anlık Kalan süreyi veya indirilen dosya miktarını göstermiyor.
+
+Toplam verinizi farklı indirme hızlarında kaç dk'da indirileceğini görmek için her seferinde veri miktarınızı yazmanıza gerek yok.
+
+# Dikkat
+Uygulamada hatalı değer girmenizde uygulama sağlıklı çalışmıyor. Programı kapatıp açmanız gerekiyor.
+Bu sorun düzeltilecek
+
+# Düzenlenecekler/Eklenecekler
 Hata kodları düzenlenecek
-indirilen boyut kısmına bir şey girmeden işleme devam edilecek
-indirilecek boyut kısmında matematiksel işlem yapılacak
-küsürleri . yerine , ile ayırabilmeli
-
-
+indirilen boyut kısmına bir şey girmeden ( 0 olarak algılanacak )işleme devam edilecek.
+indirilecek boyut kısmında matematiksel işlem yapılacak. Kişi 10+5+3 gb yazacak.
+küsürleri . yerine , ile de ayırabilecek
 
 """
-
 
 class Inecek_Boyut(Exception):
     mesaj = "Toplam boyut, inen boyuttan büyük olmalı"
