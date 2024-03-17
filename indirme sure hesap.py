@@ -29,13 +29,14 @@ class Inecek_Boyut(Exception):
 
 
 def Saat(sure):
-    'Saniye olarak giren sayıyı "a saat b dakika c saniye" olarak döndürür'
+    'Saniye olarak gelen veriyi "a saat b dakika c saniye" string olarak döndürür'
     saat = int(sure // 3600)
     dakika = int((sure % 3600)//60)
     saniye = int(sure % 60)
     return f"{saat} saat {dakika} dakika {saniye} saniye"
 
 def BoyutHesap(verinin_ilk_boyutu):
+    'Liste olarak gelen veriden verinin boyutunu hesaplar. Float olarak döndürür'
     try:
         if verinin_ilk_boyutu[1] == "gb" and verinin_ilk_boyutu[3] == "gb":
             verinin_son_boyutu = (float(verinin_ilk_boyutu[0]) - float(verinin_ilk_boyutu[2]))*1024
@@ -56,19 +57,20 @@ def BoyutHesap(verinin_ilk_boyutu):
     except (IndexError, TypeError, NameError ):
         mesaj = "Boyutu hatalı girdiniz"
         Yanitlayici(mesaj)
-        input("Devam etmek için Enter'a basın.")
+        input("Devam etmek için Enter'a basın.\n")
 
     except Inecek_Boyut as nesne:
         Yanitlayici(nesne.mesaj)
-        input("Devam etmek için Enter'a basın.  ")
+        input("Devam etmek için Enter'a basın.\n")
 
     except ValueError:
         mesaj = "Sayıyı hatalı girdiniz"
         Yanitlayici(mesaj)
-        input("Devam etmek için Enter'a basın.")
+        input("Devam etmek için Enter'a basın.\n")
 
 
 def HizHesap(hiz):
+    'Liste olarak gelen veriden verinin hızını hesaplar. Float olarak döndürür'
 
     try:
         if hiz[5] == "MB":
@@ -91,31 +93,32 @@ def HizHesap(hiz):
     except (IndexError, TypeError):
         mesaj = "Boyutu hatalı girdiniz"
         Yanitlayici(mesaj)
-        input("Devam etmek için Enter'a basın.")
+        input("Devam etmek için Enter'a basın.\n")
 
     except (ZeroDivisionError):
         mesaj = "İndirme hızı 0 olamaz"
         Yanitlayici(mesaj)
-        input("Devam etmek için Enter'a basın.")
+        input("Devam etmek için Enter'a basın.\n")
 
     except ValueError:
         mesaj = "Sayıyı hatalı girdiniz"
         Yanitlayici(mesaj)
-        input("Devam etmek için Enter'a basın.")
+        input("Devam etmek için Enter'a basın.\n")
 
 
 
 
 def Yanitlayici(mesaj):
-    print(mesaj,"\n","*".center(50,"*"),"\n")    
+    'Yazdırmak istenilen mesajın altına yıldız çizer'
+    print("\n",mesaj,"\n","*".center(50,"*"),"\n")    
 
 
 bastan = True
 
 while (1):
 
-    while (1):           # Eğer girilen değerlerde hata varsa tekrar kullanıcının veriyi girmesi için
-        if bastan:          # Verinin baştan değerlerinin verildiği bölüm
+    while (1):           # Eğer girilen değerlerde hata varsa tekrar kullanıcının veriyi girmesi için gereken döngü
+        if bastan:          # Programın başlangıcındaki değerlerinin verildiği bölüm
             print('Sırasıyla "toplam boyutu, ,inen boyutu, indirme hızını" birimleriyle birlikte giriniz:')
             print("Örn:120.5 GB 500 mb 1 GB")
             print("!Sadece indirme hızın biriminde büyük küçük harf duyarlı! (Örn: MB, Mb)")
@@ -126,27 +129,28 @@ while (1):
             veriHizHesap = veri.split()
 
             verinin_son_boyutu = BoyutHesap(veriBoyutHesap)
-            if verinin_son_boyutu == None:
+            if verinin_son_boyutu == None:          # Eğer verinin boyutunun hesaplanmasında sorun varsa döngüyü baştan başlatır
                 continue
             else:
                 break
 
 
         else:           # Sadece indirme hızının değiştirildiği bölüm
-            del veriHizHesap[4:]
+            del veriHizHesap[4:]            # Önceki indirme hızıyla ilgili bölüm silinir
             print("İndirme Hızını ve büyüklüğünü giriniz.")
             print("Örn:5 Mb")
             print("!İndirme hızının birimi büyük küçük harf duyarlı! (Örn: MB, Mb, Gb)")
             yeniHiz = str(input()).split()
-            veriHizHesap[4:] = yeniHiz
+            veriHizHesap[4:] = yeniHiz          # Yeni indirme hızı verisi eklenir
             break
 
     mesaj = HizHesap(veriHizHesap)
-    if mesaj == None:
+
+    if mesaj == None:           # Eğer indirme hızının hesaplanmasında sorun varsa döngüyü baştan başlatır.
         continue
 
 
-    Yanitlayici(mesaj)
+    Yanitlayici(mesaj)          # indirme hızını yazdırır
     bastan = False
 
     print("Aynı inecek toplam boyuttan devam etmek için Enter'a basın.")
@@ -154,7 +158,7 @@ while (1):
     print("Çıkış yapmak için q yazın")
 
     secim = str(input(""))
-    while (not(secim == "q" or secim == "1" or secim == "")):
+    while (not(secim == "q" or secim == "1" or secim == "")):           # İşlem sonrası kullanıcıdan 3 farklı seçim alır
         print("Hatalı seçim yaptınız.")
         print("Aynı inecek toplam boyuttan devam etmek için Enter'a basın.")
         print("İnecek toplam boyutu değiştirebilmek için 1 yazın")
@@ -162,8 +166,8 @@ while (1):
 
         secim = str(input(""))
     
-    if secim == "q":
+    if secim == "q":            # Programı sonlandırır
         break
-    elif secim == "1":
+    elif secim == "1":          # Tekrardan indirilecek veriyi girmeyi sağlayacak ayarı yapar
         bastan = True
         Yanitlayici("")
