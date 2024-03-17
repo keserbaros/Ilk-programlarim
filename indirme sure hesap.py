@@ -15,9 +15,6 @@ Uygulama sadece tek seferlik süreyi gösteriyor. Zamanlayıcı başlatmıyor. A
 
 Toplam verinizi farklı indirme hızlarında kaç dk'da indirileceğini görmek için her seferinde veri miktarınızı yazmanıza gerek yok.
 
-# Dikkat
-Uygulamada hatalı değer girmenizde uygulama sağlıklı çalışmıyor. Programı kapatıp açmanız gerekiyor.
-Bu sorun düzeltilecek
 
 # Düzenlenecekler/Eklenecekler
 Hata kodları düzenlenecek
@@ -50,7 +47,6 @@ def BoyutHesap(verinin_ilk_boyutu):
             verinin_son_boyutu = float(verinin_ilk_boyutu[0]) - float(verinin_ilk_boyutu[2])*1024
         else:
             print("Program veri boyutunu GB veya MB şeklinde desteklemekte")
-            pass
 
         if verinin_son_boyutu < 0:      # eğer kişi veri boyutuna istenmeyen bir şey girerse burası NameError hatası veriyor.
             raise Inecek_Boyut
@@ -92,13 +88,13 @@ def HizHesap(hiz):
         mesaj = f"Yaklaşık {Saat(sure)} kaldı"
         return mesaj
     
-    except TypeError:
+    except (IndexError, TypeError):
         mesaj = "Boyutu hatalı girdiniz"
         Yanitlayici(mesaj)
         input("Devam etmek için Enter'a basın.")
 
     except (ZeroDivisionError):
-        mesaj = "İndirme hızı 0"
+        mesaj = "İndirme hızı 0 olamaz"
         Yanitlayici(mesaj)
         input("Devam etmek için Enter'a basın.")
 
@@ -117,29 +113,41 @@ def Yanitlayici(mesaj):
 bastan = True
 
 while (1):
-    if bastan:          # Verinin baştan değerlerinin verildiği bölüm
-        print('Sırasıyla "toplam boyutu, ,inen boyutu, indirme hızını" birimleriyle birlikte giriniz:')
-        print("Örn:120.5 GB 500 mb 1 GB")
-        print("!Sadece indirme hızın biriminde büyük küçük harf duyarlı! (Örn: MB, Mb)")
-        print("Yukarı ok yönü tuşuyla bir önceki değerlerinizi görebilirsiniz")
 
-        veri = str(input())
-        veriBoyutHesap = veri.lower().split()
-        veriHizHesap = veri.split()
+    while (1):           # Eğer girilen değerlerde hata varsa tekrar kullanıcının veriyi girmesi için
+        if bastan:          # Verinin baştan değerlerinin verildiği bölüm
+            print('Sırasıyla "toplam boyutu, ,inen boyutu, indirme hızını" birimleriyle birlikte giriniz:')
+            print("Örn:120.5 GB 500 mb 1 GB")
+            print("!Sadece indirme hızın biriminde büyük küçük harf duyarlı! (Örn: MB, Mb)")
+            print("Yukarı ok yönü tuşuyla bir önceki değerlerinizi görebilirsiniz")
+        
+            veri = str(input())
+            veriBoyutHesap = veri.lower().split()
+            veriHizHesap = veri.split()
 
-        verinin_son_boyutu = BoyutHesap(veriBoyutHesap)
+            verinin_son_boyutu = BoyutHesap(veriBoyutHesap)
+            if verinin_son_boyutu == None:
+                continue
+            else:
+                break
 
-        bastan = False
-    else:           # Sadece indirme hızının değiştirildiği bölüm
-        del veriHizHesap[4:]
-        print("İndirme Hızını ve büyüklüğünü giriniz.")
-        print("Örn:5 Mb")
-        print("!İndirme hızının birimi büyük küçük harf duyarlı! (Örn: MB, Mb, Gb)")
-        yeniHiz = str(input()).split()
-        veriHizHesap[4:] = yeniHiz
-    
+
+        else:           # Sadece indirme hızının değiştirildiği bölüm
+            del veriHizHesap[4:]
+            print("İndirme Hızını ve büyüklüğünü giriniz.")
+            print("Örn:5 Mb")
+            print("!İndirme hızının birimi büyük küçük harf duyarlı! (Örn: MB, Mb, Gb)")
+            yeniHiz = str(input()).split()
+            veriHizHesap[4:] = yeniHiz
+            break
+
     mesaj = HizHesap(veriHizHesap)
+    if mesaj == None:
+        continue
+
+
     Yanitlayici(mesaj)
+    bastan = False
 
     print("Aynı inecek toplam boyuttan devam etmek için Enter'a basın.")
     print("İnecek toplam boyutu değiştirebilmek için 1 yazın")
