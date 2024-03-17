@@ -1,8 +1,19 @@
 # bazı oyun servis sağlayıcıları indirme süresini göstermediği için bu programı kullandığım zamanlar oluyor.
 
-# belki kullanıcı toplama ve çarpma toplam boyuta !!
-# küsürü "," ile girebilir
 # telefondan uzaktan kontrol etme
+
+"""
+Eklenecekler:
+
+Kişi verinin hızını değiştirirken verinin boyutunu görecek.
+Hata kodları düzenlenecek
+indirilen boyut kısmına bir şey girmeden işleme devam edilecek
+indirilecek boyut kısmında matematiksel işlem yapılacak
+küsürleri . yerine , ile ayırabilmeli
+
+
+
+"""
 
 
 class Inecek_Boyut(Exception):
@@ -100,7 +111,7 @@ while (1):
         print("Örn:120.5 GB 500 mb 1 GB")
         print("!Sadece indirme hızın biriminde büyük küçük harf duyarlı! (Örn: MB, Mb)")
         print("Yukarı ok yönü tuşuyla bir önceki değerlerinizi görebilirsiniz")
-        
+
         veri = str(input())
         veriBoyutHesap = veri.lower().split()
         veriHizHesap = veri.split()
